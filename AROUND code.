@@ -1,0 +1,36 @@
+//This code is to be uploaded to the around movment stepper motor arduino.
+// note remeber all buttons are connected to the same bread board. 
+
+#include <Stepper.h>
+
+int aroundRight = 13;// the around movement but spinning clockwise
+int aroundLeft = 12; // anticlockwise
+float steps = 2048; //check if cosnt works instead of float
+float step = 360 / steps;
+float current_degree;
+float stop_degrees = 90;
+
+Stepper stepper(steps, 11, 10, 9, 6);
+
+
+
+void setup() {
+  pinMode(aroundRight, INPUT);
+  pinMode(aroundLeft, INPUT);
+  stepper.setSpeed(8); // 8 rotations per min
+}
+
+
+void aroundTheWorld(){ // cause the patient is obvi the world //spins
+ if (digitalRead(aroundRight) & current_degree != stop_degrees) {
+    stepper.step(1);
+    current_degree += step;
+  } else if (digitalRead(aroundLeft) & current_degree != -stop_degrees) {
+    stepper.step(-1);
+    current_degree -= step;
+  }
+
+void loop() {
+  aroundTheWorld()
+}
+ 
