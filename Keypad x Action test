@@ -1,0 +1,35 @@
+// pretty much works. the code is a teeeny bit confused I reckon. It prints a 0 before the serial print but thats fixable LATER
+
+
+//Create an object from keypadddddddd
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, Rows, Col );
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+
+}
+
+//void headToToe()//the ring rolls on pin tracks from the patients head to their toes
+
+//void headSpins() //the ring rotates the teable till it hits it // doesn't actually hit
+
+//void aroundTheWorld(){ // cause the patient is obvi the world //spins
+//  char key = keypad.getKey();// Read the key
+//  Serial.print(key);
+//  if (key == '0'){
+//    Serial.println(key);
+//    Serial.print("around the world to the left ");
+ // }
+//}
+                      
+         //at first the function would not work then i put it into the loop. I am now relising its cause i made the function but literally never called it in the loop jesssuss
+
+
+void loop() {
+    char key = keypad.getKey();// Read the key
+  Serial.print(key);
+  if (key == '0'){
+    Serial.println("around the world to the left ");
+  }
+}
