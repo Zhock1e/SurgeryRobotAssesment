@@ -1,0 +1,46 @@
+// the ring spin code!
+
+#include <Stepper.h>
+
+int spin = 8;
+
+float steps = 2048; //check if cosnt works instead of float
+float step = 360 / steps;
+float current_degree;
+float stop_degrees = 90;
+
+Stepper rightGear = Stepper(SRP, 11, 10, 9, 6);
+Stepper leftGear = Stepper(SRP, 5, 4, 3, 2);
+
+
+void setup() {
+  pinMode(spin, INPUT);
+  rightGear.setSpeed(8);
+  leftGear.setSpeed(8);
+}
+
+// I am going to code two functions one for each gear. Both codes are the same just one for each gear, the gear moves when the button is HIGH and both functions are called in the loop. so simple!
+
+void rightGearSpin() {
+ if (digitalRead(spin) & current_degree != stop_degrees) {
+    rightGear.step(1);
+    current_degree += step;
+  }
+}
+
+void leftGearSpin() {
+ if (digitalRead(spin) & current_degree != stop_degrees) {
+    leftGear.step(1);
+    current_degree += step;
+  }
+}
+
+void loop() {
+  rightGearSpin()
+  leftGearSpin()
+}
+
+
+
+//if i wanna get lazy i can just code for two seperate things copy and oaste the around code. Then make a button to press two buttons at once.
+/make a function for both gears then call them both if button is pressed.
